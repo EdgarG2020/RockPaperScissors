@@ -1,34 +1,68 @@
-playerScore = 0
-computerScore = 0
+/* Dom nodes */
+const scorePlayer = document.querySelector('.player-score');
+const scoreComputer = document.querySelector('.computer-score');
+const message = document.querySelector('.message')
+const selectionPlayer = document.querySelector('.player-selection');
+const selectionComputer = document.querySelector('.computer-selection');
 
+/* Score */
+let playerScore = 0
+let computerScore = 0
+
+/* Player and Computer selections */
+const options = ['rock', 'paper', 'scissors']
 function getComputerChoice() {
-    let options = ['rock', 'paper', 'scissors']
     let choice = options[Math.floor(Math.random() * options.length)]
     return choice
 }
 
-function playRound(playerSelection) {
-    let computerSelection = getComputerChoice()
+function getPlayerChoice() {
+    let validatedInput = false;
+    while(validatedInput == false) {
+        const choice = prompt('Rock, Papr or Scissors');
+        if (choice == null){
+            continue;
+        }
+        const choiceLower = choice.toLowerCase();
+        if(options.includes(choiceLower)) {
+            validatedInput = true;
+            return choiceLower
+        }
+    }
+}
+
+/* game logic */
+function playRound(playerSelection, computerSelection) {
     let result = ''
 
     if ((playerSelection == 'rock' && computerSelection == 'scissors') ||
         (playerSelection == 'scissors' && computerSelection == 'paper') ||
         (playerSelection == 'paper' && computerSelection == 'rock')) {
-
-        playerScore++
+        scorePlayer.innerHTML++    
         result = 'You win! ' + playerSelection + ' beats ' + computerSelection
     } else if (playerSelection === computerSelection) {
         result = 'Tie, you both chose ' + playerSelection
     } else {
-        computerScore++
+        scoreComputer.innerHTML++
         result = 'You lose. ' + computerSelection + ' beats ' + playerSelection
     }
-    return result
+    return result;
+
 }
 
-const playerSelection = prompt('Rock, Paper, or Scissors?').toLowerCase()
-const computerSelection = getComputerChoice()
-console.log(playRound(playerSelection, computerSelection))
+function game() {
+    for(i = 0; i < 5; i++) {
+        const playerSelection = getPlayerChoice();
+        const computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+    }
+}
+
+game()
+
+const rock = document.getElementById("rock")
+const paper = document.getElementById("paper")
+const scissors = document.getElementById("scissors")
 
 
 
