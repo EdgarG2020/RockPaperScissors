@@ -56,6 +56,7 @@ function game() {
         const computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection));
     }
+    console.log('game over')
 }
 
 game()
