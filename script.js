@@ -1,10 +1,3 @@
-/* Dom nodes */
-const scorePlayer = document.querySelector('.player-score');
-const scoreComputer = document.querySelector('.computer-score');
-const message = document.querySelector('.message')
-const selectionPlayer = document.querySelector('.player-selection');
-const selectionComputer = document.querySelector('.computer-selection');
-
 /* Score */
 let playerScore = 0
 let computerScore = 0
@@ -59,11 +52,6 @@ function game() {
 }
 
 game()
-
-const rock = document.getElementById("rock")
-const paper = document.getElementById("paper")
-const scissors = document.getElementById("scissors")
-
 
 
 
